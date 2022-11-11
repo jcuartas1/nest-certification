@@ -1,12 +1,24 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CoffeesController } from './coffees/coffees.controller';
-import { CoffeesService } from './coffees/coffees.service';
 import { CoffeesModule } from './coffees/coffees.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [CoffeesModule],
+  imports: [
+    CoffeesModule,
+    ConfigModule.forRoot(), 
+    TypeOrmModule.forRoot({
+      type:'postgres',
+      host:process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      database: process.env.DB_NAME,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      autoLoadEntities: true,
+      synchronize: true
+    })],
   controllers: [AppController],
   providers: [AppService],
 })

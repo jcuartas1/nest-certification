@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+.env
+typeorm-cli.config.ts
+
 # Logs
 logs
 *.log
