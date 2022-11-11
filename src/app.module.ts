@@ -9,8 +9,8 @@ import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
-    CoffeesModule,
     ConfigModule.forRoot(), 
+    CoffeesModule,
     TypeOrmModule.forRoot({
       type:'postgres',
       host:process.env.DB_HOST,
