@@ -4,7 +4,7 @@
 
 .env
 typeorm-cli.config.ts
-
+postgres/
 # Logs
 logs
 *.log
