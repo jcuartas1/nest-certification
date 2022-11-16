@@ -13,3 +13,11 @@ services:
     container_name: nest-pg
     volumes:
       - ./postgres:/var/lib/postgresql/data
+  test-db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: pass123
+      POSTGRES_DB: CoffeeDbTest

@@ -4,11 +4,20 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as Joi from '@hapi/joi';
+
 
 @Module({
   imports: [
+    ConfigModule.forRoot(
+      {
+        validationSchema: Joi.object({
+          DB_HOST: Joi.required(),
+          DB_PORT: Joi.number().default(5432),
+        })
+      }
+    ), 
     CoffeesModule,
-    ConfigModule.forRoot(), 
     TypeOrmModule.forRoot({
       type:'postgres',
       host:process.env.DB_HOST,
